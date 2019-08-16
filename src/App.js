@@ -1,26 +1,27 @@
-import React from 'react';
-//import logo from './logo.svg';
+import React, {Component} from 'react';
 import logo from './logo_redpins_final.svg';
 import './App.css';
 import FacebookLoginCp from './FacebookLoginCp';
- 
-const responseFacebook = (response) => {
-  console.log(response);
-}
+import 'typeface-roboto';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import MenuBar from './MenuBar';
+import SignIn from './SignIn';
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Please login
-        </p>
-        <FacebookLoginCp/>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    return (
+      <div>
+        
+          <SignIn />
+
+        
+      </div>
+    )
+  }
 }
 
 
