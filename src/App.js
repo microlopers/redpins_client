@@ -16,6 +16,7 @@ import green from '@material-ui/core/colors/green';
 import { ThemeProvider } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import logo from './logo_redpins_final.svg';
+import Footer from './Footer';
 
 
 
@@ -52,7 +53,9 @@ class App extends Component {
               <FacebookLoginCp />
             </Grid>
           </Grid>
-
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Footer />
+          </Grid>
         </ThemeProvider>
       </div>
     )

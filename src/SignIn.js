@@ -102,15 +102,6 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © Codelopers Inc. '}
-        <Link color="inherit" href="#">
-        www.redpins.com
-        </Link>{''}
-        &nbsp; {new Date().getFullYear()}
-      </Typography>
-      </Box>
     </Container>
   );
 }
