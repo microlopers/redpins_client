@@ -38,9 +38,9 @@ class App extends Component {
         <ThemeProvider theme={theme}>
 
 
-          <Grid container direction="row" justify="center" alignItems="center">
+          {/* <Grid container direction="row" justify="center" alignItems="center">
             <MenuBar />
-          </Grid>
+          </Grid> */}
           <Grid container direction="row" justify="center" alignItems="center">
             <img src={logo} className="App-logo" alt="logo" />
           </Grid>
