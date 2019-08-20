@@ -1,27 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
-import FacebookLoginCp from './FacebookLoginCp';
 import 'typeface-roboto';
-import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
-import AppBar from '@material-ui/core/AppBar';
 import MenuBar from './MenuBar';
-import SignIn from './SignIn';
 import { createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
 import { red } from '@material-ui/core/colors';
-import purple from '@material-ui/core/colors/purple';
 import grey from '@material-ui/core/colors/grey';
-import green from '@material-ui/core/colors/green';
 import { ThemeProvider } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import logo from './logo_redpins_final.svg';
 import Footer from './Footer';
+import LoginContainer from "./LoginContainer"
 
 
 
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      isLoggedIn: false,
+      user: '',
+      email: '',
+      picture: ''
+    }
+
+    this.handleLogin = this.handleLogin.bind(this)
+  }
+
+  handleLogin(response) {
+    console.log("Callback initiated");
+
+    this.setState({
+      user: response.name
+    });
+    if (this.state.user != null) {
+      this.setState({
+        email: response.email,
+        picture: response.picture.data.url
+      });
+      console.log("Logged as " + this.state.user);
+      console.log("Picture " + this.state.picture);
+    }
+    this.setState({
+      isLoggedIn: true
+    });
+
+  }
 
   render() {
     const theme = createMuiTheme({
@@ -34,25 +59,25 @@ class App extends Component {
       },
     });
 
+    let headerPart;
+    let bodyPart;
+    if (this.state.isLoggedIn) {
+      headerPart = <MenuBar name={this.state.user} picture={this.state.picture} />;
+      bodyPart = <div></div>
+    } else {
+      headerPart = <img src={logo} className="App-logo" alt="logo" />;
+      bodyPart = <LoginContainer action={this.handleLogin} />
+    }
+
     return (
       <div>
         <ThemeProvider theme={theme}>
 
+          <Grid container direction="row" justify="center" alignItems="center">
+            {headerPart}
+          </Grid>
 
-          {/* <Grid container direction="row" justify="center" alignItems="center">
-            <MenuBar />
-          </Grid> */}
-          <Grid container direction="row" justify="center" alignItems="center">
-            <img src={logo} className="App-logo" alt="logo" />
-          </Grid>
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid container direction="column" justify="center" alignItems="center" xs="6">
-              <SignIn />
-            </Grid>
-            <Grid container direction="column" justify="center" alignItems="center" xs="6">
-              <FacebookLoginCp />
-            </Grid>
-          </Grid>
+          {bodyPart}
           <Grid container direction="row" justify="center" alignItems="center">
             <Footer />
           </Grid>
