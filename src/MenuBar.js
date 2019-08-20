@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MenuBar() {
+export default function MenuBar(props) {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -50,7 +50,7 @@ export default function MenuBar() {
           control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
           label={auth ? 'Logout' : 'Login'}
         />
-        
+
       </FormGroup>
       <AppBar position="static">
         <Toolbar>
@@ -60,9 +60,11 @@ export default function MenuBar() {
           <Typography variant="h6" className={classes.title}>
             Photos
           </Typography>
-          
+
           {auth && (
             <div>
+              {props.name}
+              
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -70,7 +72,7 @@ export default function MenuBar() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+              <img src={props.picture} style={{ width: 34, height: 34, borderRadius: 34 / 2 }} />
               </IconButton>
               <Menu
                 id="menu-appbar"
