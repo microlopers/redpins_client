@@ -2,23 +2,31 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import Grid from '@material-ui/core/Grid';
 import FacebookLoginCp from './FacebookLoginCp';
+import { loginAction } from './actions'
+import { Button } from '@material-ui/core'
+import { useDispatch } from 'react-redux'
 
-class LoginContainer extends Component {
+export default function LoginContainer(props){
+    
+    const dispatch = useDispatch();
 
-    render() {
-        return (
-            <div>
-                <Grid container direction="row" justify="center" alignItems="center">
-                    <Grid container direction="column" justify="center" alignItems="center" xs="6">
-                        <SignIn />
-                    </Grid>
-                    <Grid container direction="column" justify="center" alignItems="center" xs="6">
-                        <FacebookLoginCp action={this.props.action}/>
-                    </Grid>
+
+    return (
+        <div>
+            <Grid container direction="row" justify="center" alignItems="center">
+                <Grid container direction="column" justify="center" alignItems="center" xs="6">
+                    <SignIn />
                 </Grid>
-            </div>
-        )
-    }
-}
+                <Grid container direction="column" justify="center" alignItems="center" xs="6">
+                    <FacebookLoginCp action={props.action}/>
+                    <br></br>
+                    <Button variant="contained" color="secondary" onClick={() => { dispatch(loginAction()) }}>
+                    Development login
+                    </Button>
+                    
+                </Grid>
+            </Grid>
+        </div>
+    )
 
-export default LoginContainer;
+}

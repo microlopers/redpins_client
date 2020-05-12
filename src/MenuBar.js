@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutAction } from './actions'
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,12 +29,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function MenuBar(props) {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const loginState = useSelector(state => state.login);
+  const dispatch = useDispatch();
+
   function handleChange(event) {
-    setAuth(event.target.checked);
+    //setAuth(event.target.checked);
+    dispatch(logoutAction());
   }
 
   function handleMenu(event) {

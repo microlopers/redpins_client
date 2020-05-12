@@ -66,3 +66,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Redux
+
+install redux:
+### `yarn add redux react-redux`
+
+install redux-thunk
+### `yarn add redux-thunk` 
+allows you to create middleware actions
+
+install material-ui icons
+### `yarn add @material-ui/icons`
