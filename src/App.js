@@ -14,7 +14,7 @@ import LoginContainer from "./LoginContainer";
 import { loginAction } from './actions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import Dashboard from './Dashboard';
 
 
 
@@ -58,7 +58,7 @@ function App() {
   if (loginState.loggedIn) {
     //headerPart = <MenuBar name={this.state.user} picture={this.state.picture} />;
     headerPart = <MenuBar name={loginState.user!=null?loginState.user:"DEVELOPER"} picture={loginState.picture!=null?loginState.picture:avatar}  />;
-    bodyPart = <div></div>
+    bodyPart = <div><Dashboard></Dashboard></div>
   } else {
     headerPart = <img src={logo} className="App-logo" alt="logo" />;
     bodyPart = <LoginContainer action={handleLogin} />
