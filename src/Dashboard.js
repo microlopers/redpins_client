@@ -8,8 +8,10 @@ function Dashboard() {
     function loadCardDetail(){
         Axios.get('https://localhost:8443/cardetails', { crossdomain: true }).then(
             res => {
-                carDetails = res;
+                carDetails = res.data;
                 console.log(carDetails);
+                console.log(carDetails.id);
+                console.log(carDetails.licencePlate);
             }
         )
     }
