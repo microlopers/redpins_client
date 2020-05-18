@@ -78,3 +78,5 @@ allows you to create middleware actions
 
 install material-ui icons
 ### `yarn add @material-ui/icons`
+
+add redux dev tool extension to browser, otherwise client will not start.
