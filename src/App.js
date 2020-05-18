@@ -57,7 +57,7 @@ function App() {
   let bodyPart;
 
   // Development skip 
-  loginState.loggedIn = true
+  //loginState.loggedIn = true
 
   if (loginState.loggedIn) {
     //headerPart = <MenuBar name={this.state.user} picture={this.state.picture} />;

@@ -8,11 +8,25 @@ const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+    dashboardBox: {
+        border: 0,
+        borderRadius: 6,
+        boxShadow: 1,
+        backgroundColor: 'white',
+        display: "flex",
+        flexDirection: "column",
     },
+    dashboardIconBox: {
+        border: 0,
+        borderRadius: '1',
+        boxShadow: 1,
+        backgroundColor: '#dddddd',
+        horizontalAlign: 'center',
+        margin: '-50px 0px 20px',
+        width: '40%',
+        height: '50%',
+        overflow: "hidden" 
+    }
   }));
 
 export default function DashboardItem(props) {
@@ -21,8 +35,8 @@ export default function DashboardItem(props) {
     
     return (
         
-        <Box p={2} style={{backgroundColor:'#ffffff'}} border={0} borderRadius={6} boxShadow={1}>
-            <Box>{props.icon}</Box>
+        <Box className={classes.dashboardBox} p={2}>
+            <Box className={classes.dashboardIconBox}>{props.icon}</Box>
             
             sdfsdf
             <Button onClick={props.onstuk}>{props.title}</Button>
