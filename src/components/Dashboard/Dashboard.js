@@ -5,7 +5,7 @@ import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DashboardItem from './DashboardItem';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
-import SettingsIcon from '@material-ui/icons/DirectionsCar';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,8 +37,8 @@ function Dashboard() {
         console.log("Display settings activated!")
     }
 
-    const carIcon = <DirectionsCarIcon style={{ color: 'aa0000' }} />
-    const settingsIcon = <SettingsIcon style={{ color: 'aa0000' }} />
+    const carIcon = <DirectionsCarIcon style={{ color: 'ffffff', fontSize: '100%' }}/>
+    const settingsIcon = <SettingsIcon style={{ color: 'ffffff', fontSize: '100%' }} />
 
     return(
         <div className={classes.root}  style={{backgroundColor:'#efefef'}}>
@@ -46,10 +46,10 @@ function Dashboard() {
             <Grid container spacing={10}>
                 <Grid item xs={12}><h1>Dashboard</h1></Grid>
                 <Grid item xs={12} sm={4}>
-                     <DashboardItem title="Car log" onstuk={loadCardDetail} icon={carIcon}></DashboardItem>
+                     <DashboardItem title="Car log" onstuk={loadCardDetail} icon={carIcon} background='#e3594f'></DashboardItem>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                     <DashboardItem title="Settings" onstuk={dislpaySettings} icon={settingsIcon}></DashboardItem>
+                     <DashboardItem title="Settings" onstuk={dislpaySettings} icon={settingsIcon} background='#54c45e'></DashboardItem>
                 </Grid>
             </Grid>
             </Container>
