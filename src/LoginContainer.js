@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import Grid from '@material-ui/core/Grid';
 import FacebookLoginCp from './FacebookLoginCp';
-import { loginAction } from './actions'
+import { loginAction } from './redux/actions'
 import { Button } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 

@@ -12,7 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useSelector, useDispatch } from 'react-redux'
-import { logoutAction } from '../../actions'
+import { logoutAction } from '../../redux/actions'
 
 
 const useStyles = makeStyles(theme => ({
