@@ -5,7 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import grey from '@material-ui/core/colors/grey';
 import { ThemeProvider } from '@material-ui/styles';
-import BaseView from './views/BaseView';
+import RootView from './views/RootView';
 
 
 
@@ -29,7 +29,7 @@ function App() {
       {/* looged in : {loginState ? 'true' : 'false'} */}
       <ThemeProvider theme={theme}>
 
-        <BaseView></BaseView>
+        <RootView></RootView>
         
       </ThemeProvider>
 

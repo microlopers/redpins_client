@@ -8,11 +8,12 @@ import { loginAction } from '../redux/actions';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Dashboard from '../components/Dashboard/Dashboard';
+import Carlog from '../components/Carlog/Carlog';
 import MenuBar from '../components/Menu/MenuBar';
 
 
 
-export default function BaseView(props) {
+export default function RootView(props) {
 
     const loginState = useSelector(state => state.login);
     const showPosition = useSelector(state => state.appController);
@@ -51,7 +52,7 @@ export default function BaseView(props) {
         if (showPosition.position === 'DASHBOARD') {
             bodyPart = <div><Dashboard></Dashboard></div>
         } else if (showPosition.position === 'CARLOG') {
-            bodyPart = <div>carlog</div>
+            bodyPart = <div><Carlog></Carlog></div>
         }
 
     } else {

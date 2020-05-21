@@ -18,3 +18,9 @@ export const showCarListAction = () => {
     }
 }
 
+export const showDashboardAction = () => {
+    return {
+        type: 'SHOW_DASHBOARD'
+    }
+}
+
