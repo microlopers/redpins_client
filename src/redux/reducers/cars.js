@@ -1,9 +1,14 @@
-const INITIAL_STATE = {}
+import {LOAD_CAR_LIST} from '../actions/actionTypes'
 
-const carReducer = (state = INITIAL_STATE, action) => {
+const initialState = {}
+
+const applyAddCars = (state, action) =>
+    action.cars;
+
+const carReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'ADD':
-         return state;
+        case LOAD_CAR_LIST:
+         return applyAddCars(state, action);;
         default:
             return state;
     }

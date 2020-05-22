@@ -1,3 +1,5 @@
+import {ADD_CAR_LIST,LOAD_CAR_LIST} from './actionTypes'
+
 export const loginAction = (response) => {
     return {
         type:'LOGIN',
@@ -24,18 +26,18 @@ export const showDashboardAction = () => {
     }
 }
 
-const doLoadCars = () => ({
-    type: LOAD_CARS,
+const doLoadCarList = () => ({
+    type: LOAD_CAR_LIST
 });
 
-const doAddCars = (cars) => ({
-    type: CARS_ADD,
+const doAddCarList = (cars) => ({
+    type: ADD_CAR_LIST,
     cars
 });
 
 export {
-    doFetchCars,
-    doAddCars
+    doLoadCarList,
+    doAddCarList
 };
 
 
