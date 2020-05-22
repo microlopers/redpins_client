@@ -8,7 +8,9 @@ import {applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux';
 import rootReducer from './redux/reducers';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 
 // const store = createStore( 
@@ -19,7 +21,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 
     
     //const store = createStore(rootReducer, compose(applyMiddleware(thunk))
-    const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+    const store = createStore(rootReducer, compose(applyMiddleware(sagaMiddleware),applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 ReactDOM.render(
     <Provider store={store}>

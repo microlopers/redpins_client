@@ -24,3 +24,18 @@ export const showDashboardAction = () => {
     }
 }
 
+const doLoadCars = () => ({
+    type: LOAD_CARS,
+});
+
+const doAddCars = (cars) => ({
+    type: CARS_ADD,
+    cars
+});
+
+export {
+    doFetchCars,
+    doAddCars
+};
+
+
