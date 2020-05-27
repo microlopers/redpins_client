@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Axios from 'axios';
-import { Grid, Container, Button } from '@material-ui/core';
+import { all, call, put, takeLeading } from 'redux-saga/effects';
+import { Grid, Container, Button, TextareaAutosize } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import { useDispatch } from 'react-redux';
@@ -14,6 +14,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import { doLoadCarListAction } from '../../redux/actions';
+import { useSelector } from 'react-redux';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,27 +35,27 @@ const useStyles = makeStyles((theme) => ({
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
     { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-    {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toFixed(2),
-    },
+    // {
+    //     id: 'population',
+    //     label: 'Population',
+    //     minWidth: 170,
+    //     align: 'right',
+    //     format: (value) => value.toLocaleString('en-US'),
+    // },
+    // {
+    //     id: 'size',
+    //     label: 'Size\u00a0(km\u00b2)',
+    //     minWidth: 170,
+    //     align: 'right',
+    //     format: (value) => value.toLocaleString('en-US'),
+    // },
+    // {
+    //     id: 'density',
+    //     label: 'Density',
+    //     minWidth: 170,
+    //     align: 'right',
+    //     format: (value) => value.toFixed(2),
+    // },
 ];
 
 function createData(name, code, population, size) {
@@ -60,47 +63,41 @@ function createData(name, code, population, size) {
     return { name, code, population, size, density };
 }
 
-const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-    createData('Mexico', 'MX', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-    createData('France', 'FR', 67022000, 640679),
-    createData('United Kingdom', 'GB', 67545757, 242495),
-    createData('Russia', 'RU', 146793744, 17098246),
-    createData('Nigeria', 'NG', 200962417, 923768),
-    createData('Brazil', 'BR', 210147125, 8515767),
-];
+
+
+const getTableRows = (responseData) => {
+    let retVal = [];
+    responseData.forEach(element => {
+        console.log(element.id +","+ element.licencePlate)
+        retVal.push(createData(element.id, element.licencePlate));
+    });
+    return retVal;
+}
 
 export default function Carlog() {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const carData = useSelector(state => state);
 
 
-    function handleCarDetailData() {
-        let carDetails = loadCardDetail();
+    let rows = [];
+
+    // console.log(carData);
+    // let textik = null;
+    if (carData != null && carData.carReducer != null && carData.carReducer.cars != null) {
+        //     console.log("Data:")
+        //     console.log(carData.carReducer.cars);
+        //     textik = carData.carReducer.cars.toString()
+        //     console.log(textik);
+        rows = getTableRows(carData.carReducer.cars)
     }
 
-    function loadCardDetail() {
-        loadCars().then(function (cars) {
-            console.log(cars.cars.data[0]);
-        });
-        // var data = []
-        // Axios.get('https://localhost:8443/cardetaillist', { crossdomain: true }).then(function (response) {
-        //     data.push(response.data);
-        // }
-        // )
-
-        return 'data';
+    function loadCardList() {
+        console.log("Function: loadCardList");
+        dispatch(doLoadCarListAction());
     }
 
-    const carIcon = <DirectionsCarIcon style={{ color: 'ffffff', fontSize: '100%' }} />
+    // const carIcon = <DirectionsCarIcon style={{ color: 'ffffff', fontSize: '100%' }} />
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -114,11 +111,12 @@ export default function Carlog() {
         setPage(0);
     };
 
+
     return (
         <div className={classes.root} style={{ backgroundColor: '#efefef' }}>
             <Container>
                 <Grid container spacing={10}>
-                    <Grid item xs={12}><h1>Car logs</h1></Grid>
+                    <Grid item xs={12}><h1>Car logs</h1><Button onClick={loadCardList} >load</Button></Grid>
                     <Grid item xs={12}>
                         <TableContainer className={classes.container}>
                             <Table stickyHeader aria-label="sticky table">

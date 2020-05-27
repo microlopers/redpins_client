@@ -17,6 +17,7 @@ export default function RootView(props) {
 
     const loginState = useSelector(state => state.login);
     const showPosition = useSelector(state => state.appController);
+
     const dispatch = useDispatch();
 
     const handleLogin = (response) => {
