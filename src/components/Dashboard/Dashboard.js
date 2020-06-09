@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Axios from 'axios';
 import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DashboardItem from './DashboardItem';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { useDispatch } from 'react-redux';
-import { showCarListAction } from '../../redux/actions';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -22,20 +20,18 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Dashboard() {
+  export default function Dashboard() {
     const classes = useStyles();
-    const dispatch = useDispatch();
-
-    
 
     function dislpaySettings(){
         console.log("Display settings activated!")
     }
 
     function openCarList(){
-        dispatch(showCarListAction());
+        history.push("/carlog");
     }
 
+    const history = useHistory();
     const carIcon = <DirectionsCarIcon style={{ color: 'ffffff', fontSize: '100%' }}/>
     const settingsIcon = <SettingsIcon style={{ color: 'ffffff', fontSize: '100%' }} />
 
@@ -56,4 +52,3 @@ function Dashboard() {
     )
 }
 
-export default Dashboard

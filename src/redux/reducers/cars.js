@@ -1,6 +1,5 @@
 import {LOAD_CAR_LIST} from '../actions/actionTypes'
 import {ADD_CAR_LIST} from '../actions/actionTypes'
-import {loadCarLogList} from '../sagas/carSaga'
 
 const INITIAL_STATE = {}
 

@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
-
-import { all, call, put, takeLeading } from 'redux-saga/effects';
-import { Grid, Container, Button, TextareaAutosize } from '@material-ui/core';
+import React from 'react';
+import { Grid, Container, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import { useDispatch } from 'react-redux';
-import { loadCars } from '../../apicalls/CarlogsRepository';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -27,14 +23,43 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    iconBox: {
+        backgroundColor: '#dddddd',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: 1,
+        horizontalAlign: 'center',
+        padding: "5px",
+        marginTop: "5px",
+        marginRight: "5px",
+        marginLeft: "20px",
+        width: '30%',
+        fontSize: 40
+    }
     // container: {
     //     maxHeight: 440,
     // },
 }));
 
 const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+    { id: 'id', label: 'id', minWidth: 70 },
+    { id: 'carLicenceId', label: 'carLicenceId', minWidth: 70 },
+    { id: 'startDestination', label: 'startDestination', minWidth: 70 },
+    { id: 'endDestination', label: 'endDestination', minWidth: 70 },
+    { id: 'startDateTime', label: 'startDateTime', minWidth: 70 },
+    { id: 'endTime', label: 'endTime', minWidth: 70 },
+    { id: 'description', label: 'description', minWidth: 70 },
+    { id: 'counterEndState', label: 'counterEndState', minWidth: 70 },
+    { id: 'businessDistance', label: 'businessDistance', minWidth: 70 },
+    { id: 'personalDistance', label: 'personalDistance', minWidth: 70 },
+    { id: 'boughtFuelValue', label: 'boughtFuelValue', minWidth: 70 },
+    { id: 'boughtFuelAmount', label: 'boughtFuelAmount', minWidth: 70 },
+    { id: 'driverID', label: 'driverID', minWidth: 70 },
+    { id: 'maximalSpeed', label: 'maximalSpeed', minWidth: 70 },
+    { id: 'averageSpeed', label: 'averageSpeed', minWidth: 70 }
+
+
+
     // {
     //     id: 'population',
     //     label: 'Population',
@@ -58,9 +83,38 @@ const columns = [
     // },
 ];
 
-function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
+function createData(id,
+    carLicenceId,
+    startDestination,
+    endDestination,
+    startDateTime,
+    endTime,
+    description,
+    counterEndState,
+    businessDistance,
+    personalDistance,
+    boughtFuelValue,
+    boughtFuelAmount,
+    driverID,
+    maximalSpeed,
+    averageSpeed) {
+    return {
+        id,
+        carLicenceId,
+        startDestination,
+        endDestination,
+        startDateTime,
+        endTime,
+        description,
+        counterEndState,
+        businessDistance,
+        personalDistance,
+        boughtFuelValue,
+        boughtFuelAmount,
+        driverID,
+        maximalSpeed,
+        averageSpeed
+    };
 }
 
 
@@ -68,8 +122,22 @@ function createData(name, code, population, size) {
 const getTableRows = (responseData) => {
     let retVal = [];
     responseData.forEach(element => {
-        console.log(element.id +","+ element.licencePlate)
-        retVal.push(createData(element.id, element.licencePlate));
+        console.log(element.id + "," + element.licencePlate)
+        retVal.push(createData(element.id,
+            element.carLicenceId,
+            element.startDestination,
+            element.endDestination,
+            element.startDateTime,
+            element.endTime,
+            element.description,
+            element.counterEndState,
+            element.businessDistance,
+            element.personalDistance,
+            element.boughtFuelValue,
+            element.boughtFuelAmount,
+            element.driverID,
+            element.maximalSpeed,
+            element.averageSpeed));
     });
     return retVal;
 }
@@ -115,8 +183,14 @@ export default function Carlog() {
     return (
         <div className={classes.root} style={{ backgroundColor: '#efefef' }}>
             <Container>
-                <Grid container spacing={10}>
-                    <Grid item xs={12}><h1>Car logs</h1><Button onClick={loadCardList} >load</Button></Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                        <Box className={classes.iconBox} style={{ backgroundColor: '#e3594f' }}>
+                            <DirectionsCarIcon style={{ color: 'ffffff', fontSize: '100%' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={2} alignContent="flex-start"><h1>Car logs</h1></Grid>
+                    <Grid item xs={8} alignContent="flex-start"><Button onClick={loadCardList} >load</Button></Grid>
                     <Grid item xs={12}>
                         <TableContainer className={classes.container}>
                             <Table stickyHeader aria-label="sticky table">

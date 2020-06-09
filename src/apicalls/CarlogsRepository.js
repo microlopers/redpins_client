@@ -1,8 +1,8 @@
 import axios from "axios"
-import { URL_CARLIST } from "../config"
+import { URL_CARLOGS } from "../config"
 
 const loadCars = () => 
-    axios.get(URL_CARLIST)
+    axios.get(URL_CARLOGS)
         .then(cars => ({ cars }))
         .catch(error => ({ error }))
 

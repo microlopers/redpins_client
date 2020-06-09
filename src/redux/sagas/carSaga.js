@@ -1,4 +1,4 @@
-import { all, call, put, takeLeading } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import {loadCars} from '../../apicalls/CarlogsRepository'
 import {doAddCarList} from '../actions'
 import {handleError} from '../../apicalls/handleError'

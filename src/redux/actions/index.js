@@ -8,6 +8,14 @@ export const loginAction = (response) => {
     }
 }
 
+export const developmentLoginAction = () =>{
+    return {
+        type: 'LOGIN',
+        user: 'Developer',
+        picture: null
+    }
+}
+
 export const logoutAction = () => {
     return {
         type: 'LOGOUT'
