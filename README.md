@@ -67,6 +67,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
+## React router
+
+install react router:
+### `yarn add react-router-dom --save`
+
 ## Redux
 
 install redux:
@@ -75,6 +80,10 @@ install redux:
 install redux-thunk
 ### `yarn add redux-thunk` 
 allows you to create middleware actions
+
+install redux-saga
+### `yarn add redux-saga` 
+allows you to load data on background
 
 install material-ui icons
 ### `yarn add @material-ui/icons`

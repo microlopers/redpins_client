@@ -1,10 +1,9 @@
 const INITIAL_STATE = {};
 
 const loginReducer = (state = INITIAL_STATE, action) => {
-    console.log(state)
+    console.log("Reducer loginReducer type:"+action.type)
     switch (action.type){
         case 'LOGIN' :
-            console.log("I\'m here "+(action.user !=null ? "response :"+action.user : ""));
             return{
                 ...state,
                 user: action.user,
@@ -12,7 +11,6 @@ const loginReducer = (state = INITIAL_STATE, action) => {
                 loggedIn: true
             }
         case 'LOGOUT' :
-            console.log("I'm out");
             return{
                 ...state,
                 user: null,
@@ -20,7 +18,6 @@ const loginReducer = (state = INITIAL_STATE, action) => {
                 loggedIn: false
             }
         default : 
-            console.log("I'm default");
             return state;
     }
 }

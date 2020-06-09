@@ -11,9 +11,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { useSelector, useDispatch } from 'react-redux'
-import { logoutAction, showDashboardAction } from '../../redux/actions'
+import { useDispatch } from 'react-redux'
+import { logoutAction} from '../../redux/actions'
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,13 +31,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function MenuBar(props) {
   const classes = useStyles();
-  const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [anchorE2, setAnchorE2] = useState(null);
   const openE2 = Boolean(anchorE2);
+  const history = useHistory();
 
-  const loginState = useSelector(state => state.login);
+  //const loginState = useSelector(state => state.login);
+
+  //setAuth(loginState.user!=null)
+  //setAuth(true);
+
   const dispatch = useDispatch();
 
   function handleChange(event) {
@@ -58,15 +63,15 @@ export default function MenuBar(props) {
   }
 
   function handleDashboard(event) {
-    dispatch(showDashboardAction());
+    history.push("/dashboard");
   }
 
   return (
     <div className={classes.root}>
       <FormGroup>
         <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
+          control={<Switch checked={true} onChange={handleChange} aria-label="login switch" />}
+          label={'Logout'}
         />
 
       </FormGroup>
@@ -114,7 +119,7 @@ export default function MenuBar(props) {
 
           </Typography>
 
-          {auth && (
+          
             <div>
               {props.name}
 
@@ -146,7 +151,7 @@ export default function MenuBar(props) {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
-          )}
+          
         </Toolbar>
       </AppBar>
     </div>

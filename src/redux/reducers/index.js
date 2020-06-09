@@ -4,7 +4,7 @@ import appController from './appController';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-    car: carReducer,
+    carReducer: carReducer,
     login : loginReducer,
     appController : appController
 });
