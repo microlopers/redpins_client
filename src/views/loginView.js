@@ -15,7 +15,7 @@ export default function LoginView() {
     const loginState = useSelector(state => state.login);
 
     const handleLogin = (response) => {
-        console.log("Callback initiated with user: " + response.name);
+        console.log("Callback initiated with user:" + response.name);
         dispatch(loginAction(response));
     }
 
