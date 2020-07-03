@@ -9,10 +9,13 @@ import Carlog from '../components/Carlog/Carlog';
 
 
 export default function CarlogView(props) {
+    window.localStorage.setItem('lastLocation','/carlog');
 
     const loginState = useSelector(state => state.login);
     const userData = loginState!=null && loginState.user!=null ? loginState.user:'';
     const pictureData = loginState!=null && loginState.picture!=null ? loginState.user:avatar;
+
+
 
     return (
         <div>
