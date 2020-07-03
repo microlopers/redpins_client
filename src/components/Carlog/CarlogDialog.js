@@ -38,7 +38,6 @@ export default function CarlogDialog(props) {
     };
 
     /** Form validation */
-    const 
     const [startDistanceText, setStartDistanceText] = React.useState('');
     
 
