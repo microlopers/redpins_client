@@ -89,3 +89,9 @@ install material-ui icons
 ### `yarn add @material-ui/icons`
 
 add redux dev tool extension to browser, otherwise client will not start.
+
+install moment library for formatting dates in js
+### `yarn add moment
+
+install react-moment library for formatting dates in js
+### `yarn add react-moment

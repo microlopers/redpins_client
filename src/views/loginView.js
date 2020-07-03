@@ -19,9 +19,12 @@ export default function LoginView() {
         dispatch(loginAction(response));
     }
 
+    const lastLocation = window.localStorage.getItem('lastLocation');
+    console.log('lastLocation: '+lastLocation)
+
     if (loginState.user!=null) {
         console.log("rerouting to dashboard");
-        return <Redirect to='/dashboard' />;
+        return <Redirect to={lastLocation!=null?lastLocation:'/dashboard'} />;
     } else {
 
         return (

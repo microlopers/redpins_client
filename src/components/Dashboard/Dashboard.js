@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
             <Grid container spacing={10}>
                 <Grid item xs={12}><h1>Dashboard</h1></Grid>
                 <Grid item xs={12} sm={4}>
-                     <DashboardItem title="Car log" onstuk={openCarList} icon={carIcon} background='#e3594f'></DashboardItem>
+                     <DashboardItem title="Car log" onstuk={openCarList} icon={carIcon} background='#e3594f' footertitle='Last record:' footertext='BL-009YZ on 9/7/2020'></DashboardItem>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                     <DashboardItem title="Settings" onstuk={dislpaySettings} icon={settingsIcon} background='#54c45e'></DashboardItem>
+                     <DashboardItem title="Settings" onstuk={dislpaySettings} icon={settingsIcon} background='#54c45e' footertitle='Last update:' footertext='1/7/2020'></DashboardItem>
                 </Grid>
             </Grid>
             </Container>

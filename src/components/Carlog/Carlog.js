@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Container, Button, Box } from '@material-ui/core';
+import { Grid, Container, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,11 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { doLoadCarListAction } from '../../redux/actions';
 import { useSelector } from 'react-redux';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
+import CarlogDialog from './CarlogDialog'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "20px",
         width: '30%',
         fontSize: 40
+    },
+    toolbarMainButton: {
+        padding: "5px",
+        marginTop: "15px",
+    },
+    toolbarButton: {
+        padding: "15px",
+        marginTop: "15px",
     }
     // container: {
     //     maxHeight: 440,
@@ -57,30 +70,6 @@ const columns = [
     { id: 'driverID', label: 'driverID', minWidth: 70 },
     { id: 'maximalSpeed', label: 'maximalSpeed', minWidth: 70 },
     { id: 'averageSpeed', label: 'averageSpeed', minWidth: 70 }
-
-
-
-    // {
-    //     id: 'population',
-    //     label: 'Population',
-    //     minWidth: 170,
-    //     align: 'right',
-    //     format: (value) => value.toLocaleString('en-US'),
-    // },
-    // {
-    //     id: 'size',
-    //     label: 'Size\u00a0(km\u00b2)',
-    //     minWidth: 170,
-    //     align: 'right',
-    //     format: (value) => value.toLocaleString('en-US'),
-    // },
-    // {
-    //     id: 'density',
-    //     label: 'Density',
-    //     minWidth: 170,
-    //     align: 'right',
-    //     format: (value) => value.toFixed(2),
-    // },
 ];
 
 function createData(id,
@@ -147,6 +136,16 @@ export default function Carlog() {
     const dispatch = useDispatch();
     const carData = useSelector(state => state);
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpenDialog = () => {
+        setOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpen(false);
+    };
+
 
     let rows = [];
 
@@ -190,7 +189,18 @@ export default function Carlog() {
                         </Box>
                     </Grid>
                     <Grid item xs={2} alignContent="flex-start"><h1>Car logs</h1></Grid>
-                    <Grid item xs={8} alignContent="flex-start"><Button onClick={loadCardList} >load</Button></Grid>
+                    <Grid item xs={6} alignContent="flex-start">
+
+                    </Grid>
+                    <Grid item xs={2} alignContent="flex-start">
+                        <IconButton color="primary" className={classes.toolbarButton} onClick={loadCardList} aria-label="Reload">
+                            <AutorenewIcon />
+                        </IconButton>
+
+                        <Fab color="secondary" aria-label="Add new" className={classes.toolbarMainButton} onClick={handleOpenDialog}>
+                            <AddCircleIcon />
+                        </Fab>
+                    </Grid>
                     <Grid item xs={12}>
                         <TableContainer className={classes.container}>
                             <Table stickyHeader aria-label="sticky table">
@@ -237,6 +247,7 @@ export default function Carlog() {
                     </Grid>
                 </Grid>
             </Container>
+            <CarlogDialog open={open} handleClose={handleCloseDialog}/>
         </div>
     );
 }

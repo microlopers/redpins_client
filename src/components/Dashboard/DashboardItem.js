@@ -33,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
     dashboardBoxFooter: {
         backgroundColor: 'white',
         borderColor: '#dddddd',
-        marginTop: "10px"
+        marginTop: "10px",
+        width: "100%",
+        textAlign: "left"
     },
     dashboardIconBox: {
         backgroundColor: '#dddddd',
@@ -61,7 +63,7 @@ export default function DashboardItem(props) {
                 <Box className={classes.dashboardBoxHeaderText}><Button onClick={props.onstuk}>{props.title}</Button></Box>
             </Box>
             <Box className={classes.dashboardBoxFooter} borderTop={1}>
-                <Box>hello</Box>
+                <Box>{props.footertitle}</Box>
             </Box>
         </Container>
     )

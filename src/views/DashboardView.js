@@ -9,6 +9,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
 
 
 export default function DashboardView(props) {
+    window.localStorage.setItem('lastLocation','/dashboard');
 
     const loginState = useSelector(state => state.login);
     const userData = loginState!=null && loginState.user!=null ? loginState.user:'';
