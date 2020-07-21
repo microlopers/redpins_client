@@ -55,12 +55,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const columns = [
-    { id: 'id', label: 'id', minWidth: 70 },
-    { id: 'carLicenceId', label: 'carLicenceId', minWidth: 70 },
-    { id: 'startDestination', label: 'startDestination', minWidth: 70 },
-    { id: 'endDestination', label: 'endDestination', minWidth: 70 },
-    { id: 'startDateTime', label: 'startDateTime', minWidth: 70 },
-    { id: 'endTime', label: 'endTime', minWidth: 70 },
+    { id: 'id', label: 'id', minWidth: 10 },
+    { id: 'carLicenceId', label: 'carLicenceId', minWidth: 50 },
+    { id: 'route', label: 'Route', minWidth: 70 },
+    { id: 'time', label: 'Time', minWidth: 90 },
     { id: 'description', label: 'description', minWidth: 70 },
     { id: 'counterEndState', label: 'counterEndState', minWidth: 70 },
     { id: 'businessDistance', label: 'businessDistance', minWidth: 70 },
@@ -87,23 +85,25 @@ function createData(id,
     driverID,
     maximalSpeed,
     averageSpeed) {
-    return {
-        id,
-        carLicenceId,
-        startDestination,
-        endDestination,
-        startDateTime,
-        endTime,
-        description,
-        counterEndState,
-        businessDistance,
-        personalDistance,
-        boughtFuelValue,
-        boughtFuelAmount,
-        driverID,
-        maximalSpeed,
-        averageSpeed
-    };
+
+        const route = startDestination + '\n' + endDestination;
+        const time = startDateTime + '\n' + endTime
+
+        return {
+            id,
+            carLicenceId,
+            route,
+            time,
+            description,
+            counterEndState,
+            businessDistance,
+            personalDistance,
+            boughtFuelValue,
+            boughtFuelAmount,
+            driverID,
+            maximalSpeed,
+            averageSpeed
+        };
 }
 
 
@@ -143,6 +143,11 @@ export default function Carlog() {
     };
 
     const handleCloseDialog = () => {
+        setOpen(false);
+    };
+
+    const handleSubmitDialog = (data) => {
+        console.log(data);
         setOpen(false);
     };
 
@@ -247,7 +252,7 @@ export default function Carlog() {
                     </Grid>
                 </Grid>
             </Container>
-            <CarlogDialog open={open} handleClose={handleCloseDialog}/>
+            <CarlogDialog open={open} handleClose={handleCloseDialog} handleSubmit={handleSubmitDialog}/>
         </div>
     );
 }

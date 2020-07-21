@@ -136,7 +136,7 @@ export default function CarlogDialog(props) {
                     <Button onClick={props.handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={props.handleClose} color="primary">
+                    <Button onClick={props.handleSubmit} color="primary">
                         Subscribe
                     </Button>
                 </DialogActions>
